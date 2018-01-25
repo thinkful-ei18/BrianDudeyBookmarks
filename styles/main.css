@@ -1,0 +1,19 @@
+h1 {
+  color: pink;
+}
+
+#js-bookmark-form {
+  background-color: rgb(151, 247, 151);
+}
+
+.bookmark-list > li {
+  margin-bottom: 20px;
+  border: 1px solid rgb(3, 177, 81);
+  padding: 20px;
+  background-color: rgb(243, 115, 136);
+}
+
+.expanded-view {
+  display: none;
+}
+
