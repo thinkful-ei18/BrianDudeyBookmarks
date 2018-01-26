@@ -1,9 +1,14 @@
+body {
+  background-color: grey;
+}
 h1 {
   color: pink;
+  text-align: center
 }
 
 #js-bookmark-form {
   background-color: rgb(151, 247, 151);
+  height: 100px;
 }
 
 .bookmark-list > li {
@@ -17,3 +22,6 @@ h1 {
   display: none;
 }
 
+ul {
+  list-style-type: none;
+}
