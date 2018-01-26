@@ -21,17 +21,18 @@ function generateBookmarkElement(title, rating, urlAddress, description, bookmar
           <div>
           <span class="the-bookmark-description">${title.description}</span>
           </div>
-        </div>
+          </div>
         <div class="bookmark-controls">
-          <button class="bookmark-expand">
-            <span class="expand-button">Detailed View On</span>
-          </button>
-           <button class="bookmark-collapse">
-            <span class="collapse-button">Detailed View Off</span>
-          </button>
-          <button class="bookmark-delete">
-            <span class="delete-button">DELETE BOOKMARK</span>
-          </button>
+        <button class="bookmark-expand">
+          <span class="expand-button">Detailed View On</span>
+        </button>
+         <button class="bookmark-collapse">
+          <span class="collapse-button">Detailed View Off</span>
+        </button>
+        <button class="js-bookmark-delete">
+          <span class="delete-button">DELETE BOOKMARK</span>
+        </button>
+      </div>
         </div>
       </li>`;
 }
@@ -42,9 +43,9 @@ function generateBookmarkString(bookmarkList) {
   return bookmarks.join('');
 }
 
-function renderBookmarkList() {
+function renderBookmarkList(list = LIBRARY) {
   console.log('`renderBookmarkList` ran');
-  const bookmarkString = generateBookmarkString(LIBRARY);
+  const bookmarkString = generateBookmarkString(list);
   $('.js-bookmark-list').html(bookmarkString);
 }
 
@@ -72,20 +73,58 @@ function handleNewBookmarkSubmit() {
   });
 }
 
-function handleBookmarkExpand() {
+// function toggleExpand(bookmarkIndex) {
+//   console.log('Toggling expand property for item at index' + bookmarkIndex);
+//   LIBRARY[bookmarkIndex].checked = !LIBRARY[bookmarkIndex].checked;
+// }
 
-  console.log('`handleBookmarkExpand` ran');
+function getBookmarkIndex(title) {
+  console.log(getBookmarkIndex);
+  const bookmarkIndexString = $(title).closest('.js-bookmark-index-element').attr('data-bookmark-index');
+  return parseInt(bookmarkIndexString, 10);
+}
+
+
+function handleBookmarkExpand() {
+  $('.bookmark-list').on('click', '.bookmark-expand', function(e) {
+    console.log('I am trying');
+    $(e.currentTarget).closest('li').find('.expanded-view').show();
+  });
 }
 
 function handleBookmarkCollapse() {
-
+  $('.bookmark-list').on('click', '.bookmark-collapse', function (e) {
+    console.log('I am trying');
+    $(e.currentTarget).closest('li').find('.expanded-view').hide();
+  });
   console.log('`handleBookmarkCollapse` ran');
 }
 
-function handleBookmarkDelete() {
-
-  console.log('`handleBookmarkDelete` ran');
+function deleteBookmark(bookmarkIndex) {
+  console.log(`Deleting ${bookmarkIndex}`);
+  LIBRARY.splice(bookmarkIndex, 1);
 }
+
+function handleBookmarkDelete() {
+  $('.bookmark-list').on('click', '.js-bookmark-delete', function (e) {
+    console.log('deleting-item');
+    const bookmarkIndex = getBookmarkIndex(e.currentTarget);
+    deleteBookmark(bookmarkIndex);
+    renderBookmarkList();
+    // $(this).closest('li').remove();
+  });
+}
+
+function returnSelectedValue() {
+  $('#bookmarkRating').change('.sortByRating', function(e) {
+    console.log(e.target.value);
+    let targetRating = parseInt(e.target.value);
+    var filteredList = LIBRARY.filter(function (item) { return item.rating === targetRating; });
+    renderBookmarkList(filteredList);
+  }
+  );
+}
+
 
 function handleBookmarks() {
   renderBookmarkList();
@@ -93,6 +132,7 @@ function handleBookmarks() {
   handleBookmarkExpand();
   handleBookmarkCollapse();
   handleBookmarkDelete();
+  returnSelectedValue();
 }
 
 $(handleBookmarks);

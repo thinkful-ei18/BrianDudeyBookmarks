@@ -39,34 +39,34 @@
 //         <span class="the-bookmark-description">${newBookmarkDescription}</span>
 //         </div>
 //       </div>
-//       <div class="bookmark-controls">
-//         <button class="bookmark-expand">
-//           <span class="expand-button">Detailed View On</span>
-//         </button>
-//          <button class="bookmark-collapse">
-//           <span class="collapse-button">Detailed View Off</span>
-//         </button>
-//         <button class="bookmark-delete">
-//           <span class="delete-button">DELETE BOOKMARK</span>
-//         </button>
-//       </div>
+      // <div class="bookmark-controls">
+      //   <button class="bookmark-expand">
+      //     <span class="expand-button">Detailed View On</span>
+      //   </button>
+      //    <button class="bookmark-collapse">
+      //     <span class="collapse-button">Detailed View Off</span>
+      //   </button>
+      //   <button class="bookmark-delete">
+      //     <span class="delete-button">DELETE BOOKMARK</span>
+      //   </button>
+      // </div>
 //     </li>`);
 // });
 
-$('.bookmark-list').on('click', '.bookmark-delete', function(e) {
-  console.log('deleting-item');
-  $(this).closest('li').remove();
-});
+// $('.bookmark-list').on('click', '.bookmark-delete', function(e) {
+//   console.log('deleting-item');
+//   $(this).closest('li').remove();
+// });
 
-$('.bookmark-list').on('click', '.bookmark-expand', function(e) {
-  console.log('I am trying');
-  $(e.currentTarget).closest('li').find('.expanded-view').show();
-});
+// $('.bookmark-list').on('click', '.bookmark-expand', function(e) {
+//   console.log('I am trying');
+//   $(e.currentTarget).closest('li').find('.expanded-view').show();
+// });
 
-$('.bookmark-list').on('click', '.bookmark-collapse', function (e) {
-  console.log('I am trying');
-  $(e.currentTarget).closest('li').find('.expanded-view').hide();
-});
+// $('.bookmark-list').on('click', '.bookmark-collapse', function (e) {
+//   console.log('I am trying');
+//   $(e.currentTarget).closest('li').find('.expanded-view').hide();
+// });
 
 // $('.bookmark-list').on('click', '.bookmark-expand', function (e) {
 //   $('.the-bookmark-url, .expanded-view').show();
